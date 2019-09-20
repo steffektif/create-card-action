@@ -1,0 +1,22 @@
+name: 'Create Github Project cards'
+description: 'Create a Github project card for an given issue on a given project board.'
+inputs:
+  project-id:  # id of input
+    description: 'Which project board should be the target'
+    required: true
+  issue-id:
+    description: 'The linked issue'
+    required: true
+  issue-repo:
+    description: 'The repo where the issue lives'
+    required: true
+outputs:
+  success: # id of output
+    description: 'A boolean that tells if the card has been added'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.project-id }}
+    - ${{ inputs.issue-id }}
+    - ${{ inputs.issue-repo }}
